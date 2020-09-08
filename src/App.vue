@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="antialiased h-screen w-screen flex items-center justify-center bg-gray-200">
+  <div id="app" class="antialiased h-screen w-screen flex items-center justify-center bg-gray-200" @dragover.prevent @drop.prevent>
     <UploadForm/>
   </div>
 </template>
