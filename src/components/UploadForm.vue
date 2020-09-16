@@ -8,7 +8,7 @@
       v-if="error"
     >
       <div class="mx-5 my-5">
-        Sorry but, the uploaded file is not supported.
+        Sorry but the uploaded file is not supported.
       </div>
     </div>
 
@@ -93,8 +93,10 @@ export default {
       console.log(axios);
       let form = new FormData();
       form.append('image', this.file, this.fileName);
-      axios.post(`${process.env.VUE_APP_BACKEND_API}/api/images`, form).then((res) => {
-        console.log(res);
+      axios.post(`${process.env.VUE_APP_BACKEND_API}/api/images`, form).then(( {data} ) => {
+        console.log(data);
+      }).catch( () => {
+        this.error = true;
       });
     },
   },
