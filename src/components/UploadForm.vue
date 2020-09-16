@@ -3,8 +3,13 @@
     class="card shadow-xl rounded-lg flex flex-col items-center justify-start bg-white px-10"
   >
     <h1 class="text-lg mt-5">Upload your image</h1>
-    <div class="error rounded-md bg-red-500 text-white text-center text-sm w-full mt-5" v-if="error">
-      <div class="mx-5 my-5"> Sorry but, the uploaded file is not supported.</div>
+    <div
+      class="error rounded-md bg-red-500 text-white text-center text-sm w-full mt-5"
+      v-if="error"
+    >
+      <div class="mx-5 my-5">
+        Sorry but, the uploaded file is not supported.
+      </div>
     </div>
 
     <h3 class="text-xs text-gray-700 mt-5">File should be Jpeg, Png...</h3>
@@ -50,6 +55,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "UploadForm",
   data() {
@@ -81,7 +88,14 @@ export default {
       this.error = false;
       if (this.file.type !== "image/png" && this.file.type !== "image/jpeg") {
         this.error = true;
+        return;
       }
+      console.log(axios);
+      let form = new FormData();
+      form.append('image', this.file, this.fileName);
+      axios.post(`${process.env.VUE_APP_BACKEND_API}/api/images`, form).then((res) => {
+        console.log(res);
+      });
     },
   },
 };
