@@ -18,7 +18,7 @@
 
     <UploadingBar v-if="uploadStatus === 'uploading'"/>
 
-    <div v-if="uploadStatus === 'done'">Uploading Done</div>
+    <ShareImage v-if="uploadStatus === 'done'" :imageLink="imageLink"/>
   </div>
 </template>
 
@@ -26,18 +26,21 @@
 import axios from "axios";
 import UploadForm from "./components/UploadForm";
 import UploadingBar from "./components/UploadingBar";
+import ShareImage from "./components/ShareImage";
 
 export default {
   name: "App",
   data() {
     return {
-      uploadStatus: "uploading",
+      uploadStatus: "waiting",
+      imageLink: '',
       error: false,
     };
   },
   components: {
     UploadForm,
-    UploadingBar
+    UploadingBar,
+    ShareImage
   },
   methods: {
     handleFileUpload(file) {
@@ -48,7 +51,7 @@ export default {
       axios
         .post(`${process.env.VUE_APP_BACKEND_API}/api/images`, form)
         .then(({ data }) => {
-          console.log(data);
+          this.imageLink = data.link;
           this.uploadStatus = 'done';
         })
         .catch(() => {
