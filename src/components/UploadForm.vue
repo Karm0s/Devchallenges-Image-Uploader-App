@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "UploadForm",
@@ -90,14 +90,16 @@ export default {
         this.error = true;
         return;
       }
-      console.log(axios);
-      let form = new FormData();
-      form.append('image', this.file, this.fileName);
-      axios.post(`${process.env.VUE_APP_BACKEND_API}/api/images`, form).then(( {data} ) => {
-        console.log(data);
-      }).catch( () => {
-        this.error = true;
-      });
+
+      this.$emit('onFileUpload', this.file);
+
+      // let form = new FormData();
+      // form.append('image', this.file, this.fileName);
+      // axios.post(`${process.env.VUE_APP_BACKEND_API}/api/images`, form).then(( {data} ) => {
+      //   console.log(data);
+      // }).catch( () => {
+      //   this.error = true;
+      // });
     },
   },
 };
