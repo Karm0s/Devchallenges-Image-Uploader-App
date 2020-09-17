@@ -8,7 +8,7 @@
     <img :src="imageLink" class="rounded-lg mt-5" alt="" />
 
     <div
-      class="flex items-center justify-between w-full rounded-lg border-2 mt-5 mb-5"
+      class="flex items-center justify-between w-full rounded-lg border-2 mt-5 mb-1"
     >
       <div class="link px-5">
         <p id="link-to-copy">{{ imageLink }}</p>
@@ -20,6 +20,7 @@
         Copy Link
       </button>
     </div>
+    <p class="text-xs text-gray-600 mb-5">(All uploaded images are deleted after 24 Hours)</p>
   </div>
 </template>
 

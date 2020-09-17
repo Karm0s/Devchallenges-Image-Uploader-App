@@ -72,7 +72,6 @@ export default {
       document.getElementById("fileUpload").click();
     },
     dropFile(e) {
-      console.log("here");
       let droppedFiles = e.dataTransfer.files;
       if (!droppedFiles) return;
       this.file = droppedFiles[0];
@@ -83,8 +82,6 @@ export default {
       this.uploadFile();
     },
     uploadFile() {
-      console.log("Uploading...");
-      console.log(this.file);
       this.error = false;
       if (this.file.type !== "image/png" && this.file.type !== "image/jpeg") {
         this.error = true;
@@ -92,14 +89,6 @@ export default {
       }
 
       this.$emit('onFileUpload', this.file);
-
-      // let form = new FormData();
-      // form.append('image', this.file, this.fileName);
-      // axios.post(`${process.env.VUE_APP_BACKEND_API}/api/images`, form).then(( {data} ) => {
-      //   console.log(data);
-      // }).catch( () => {
-      //   this.error = true;
-      // });
     },
   },
 };
