@@ -21,6 +21,8 @@ jobs:
         run: npm ci
       
       - name: run deploy script
+        env:
+          VUE_APP_BACKEND_API: ${{ secrets.VUE_APP_BACKEND_API }}
         run: |
           git config user.name "Karm0s" && git config user.email "bouchenna.yanis@protonmail.com"
           npm run gh-pages-deploy
